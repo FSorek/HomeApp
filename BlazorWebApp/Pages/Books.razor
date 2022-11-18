@@ -1,0 +1,36 @@
+﻿@page "/books"
+@using Infrastructure.Repositories
+@using global::Books.Entities
+@inject BookRepository BookRepository
+<PageTitle>Books</PageTitle>
+
+<h1>My favourite books</h1>
+<p>Here is a list of my favourite books!</p>
+<table class="table">
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var book in _books)
+        {
+            <tr>
+                <td><img src="@book.ImageUrl" asp-append-version="true" width="300px" /></td>
+                <td>@book.Title</td>
+                <td>@book.Description</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+@code {
+    private Book[]? _books;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var currentBooks = await BookRepository.GetAllAsync();
+        _books = currentBooks.ToArray();
+    }
+}
