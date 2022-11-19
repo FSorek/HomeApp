@@ -1,7 +1,8 @@
 ﻿@page "/books"
-@using Infrastructure.Repositories
+@using MediatR
 @using global::Books.Entities
-@inject BookRepository BookRepository
+@using Application.Requests
+@inject IMediator Mediator;
 <PageTitle>Books</PageTitle>
 
 <h1>My favourite books</h1>
@@ -15,10 +16,13 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var book in _books)
+        
+        @for(int i = 0; i < _books.Length; i++)
         {
+            var book = _books[i];
             <tr>
-                <td><img src="@book.ImageUrl" asp-append-version="true" width="300px" /></td>
+                <td>@(i+1)</td>
+                <td><img src="@book.ImageUrl" asp-append-version="true" width="300px"/></td>
                 <td>@book.Title</td>
                 <td>@book.Description</td>
             </tr>
@@ -26,11 +30,12 @@
         </tbody>
     </table>
 @code {
-    private Book[]? _books;
+    private Book[] _books = Array.Empty<Book>();
     
     protected override async Task OnInitializedAsync()
     {
-        var currentBooks = await BookRepository.GetAllAsync();
+        var booksRequest = new GetAllBooksRequest();
+        var currentBooks = await Mediator.Send(booksRequest);
         _books = currentBooks.ToArray();
     }
 }
