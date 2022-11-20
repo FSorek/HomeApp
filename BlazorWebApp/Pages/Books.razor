@@ -8,35 +8,44 @@
 <h1>My favourite books</h1>
 <p>Here is a list of my favourite books!</p>
 <table class="table">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Description</th>
-        </tr>
-        </thead>
+
         <tbody>
-        
         @for(int i = 0; i < _books.Length; i++)
         {
             var book = _books[i];
             <tr>
-                <td>@(i+1)</td>
-                <td><img src="@book.ImageUrl" asp-append-version="true" width="300px"/></td>
-                <td>@book.Title</td>
-                <td>@book.Description</td>
+                <td><div class="book-layout">
+                    <div class="book-image">
+                        <img src="@book.ImageUrl" alt="pic"/>
+                    </div>
+                    <div class="book-order">
+                        @(i + 1)
+                    </div>
+                    <div class="book-title">
+                        @book.Title
+                    </div>
+                    <div class="book-description">
+                        @book.Description
+                    </div>
+                    <div class="book-author">
+                        ~@book.Author
+                    </div>
+                </div></td>
             </tr>
         }
         </tbody>
     </table>
 @code {
     private Book[] _books = Array.Empty<Book>();
-    
     protected override async Task OnInitializedAsync()
     {
         var booksRequest = new GetAllBooksRequest();
         var currentBooks = await Mediator.Send(booksRequest);
         _books = currentBooks.ToArray();
+    }
+
+    private void DisplayBookDetails(Book book)
+    {
+        
     }
 }
