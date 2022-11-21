@@ -28,6 +28,6 @@ steps:
    displayName: 'Publishing App...'
    inputs:
       command: 'publish'
-      publishWebProjects: true
+      projects: 'BlazorWebApp.csproj'
       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
       zipAfterPublish: false
