@@ -26,7 +26,10 @@
 .book-image {
     grid-row: 1;
     grid-column: 1;
-    object-fit: scale-down;
+}
+.book-image > img {
+    width: 240px;
+    height: 340px;
 }
 .book-title {
     grid-row: 1;

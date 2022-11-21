@@ -14,7 +14,7 @@ public class FakeBookRepository : IBookRepository
         {
             Title = f.Commerce.ProductName(),
             Description = f.Lorem.Paragraph(8),
-            ImageUrl = f.Image.PicsumUrl(240,340),
+            ImageUrl = f.Image.PicsumUrl(340,440),
             Author = f.Name.FullName()
         });
     }
