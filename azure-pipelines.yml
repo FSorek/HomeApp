@@ -17,5 +17,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '$**/BlazorWebApp.csproj'
+    projects: '**/BlazorWebApp.csproj'
     arguments: '--configuration $(buildConfiguration)'
