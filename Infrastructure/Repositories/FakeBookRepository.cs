@@ -13,7 +13,7 @@ public class FakeBookRepository : IBookRepository
         _bookFaker = new Faker<Book>().CustomInstantiator(f => new Book()
         {
             Title = f.Commerce.ProductName(),
-            Description = f.Lorem.Paragraph(8),
+            MyOpinion = f.Lorem.Paragraph(8),
             ImageUrl = f.Image.PicsumUrl(340,440),
             Author = f.Name.FullName()
         });

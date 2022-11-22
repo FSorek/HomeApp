@@ -1,0 +1,73 @@
+﻿@using global::Books.Entities
+@using Application.DTOs.External
+@using Application.Requests
+@using MediatR
+@inject IMediator Mediator;
+<div class="book-layout">
+    <div class="book-title">
+        @Title
+    </div>
+    @if (_showGoogleDetails)
+    {
+        <div class="book-image">
+            <img src="@_googleBook!.ThumbnailUrl" alt="pic"/>
+        </div>
+        <div class="book-description">
+            @_googleBook!.Description;
+        </div>
+        <div class="book-author">
+            ~@string.Join(", ", _googleBook.Authors);
+        </div>
+        <div class="book-actions">
+            <button @onclick="HideDetails">Show default information</button>
+        </div>
+    }
+    else
+    {
+        <div class="book-image">
+            <img src="@ImageUrl" alt="pic"/>
+        </div>
+        <div class="book-description">
+            @MyOpinion
+        </div>
+        <div class="book-author">
+            ~@Author
+        </div>
+        <div class="book-actions">
+            <button @onclick="async () => await ShowDetails()">Check Google Books</button>
+        </div>
+    }
+</div>
+@code {
+
+    [Parameter]
+    public string GoogleId { get; set; } = "ABD0xgEACAAJ";
+
+    [Parameter]
+    public string Title { get; set; } = "Title";
+
+    [Parameter]
+    public string MyOpinion { get; set; } = "Comment..";
+
+    [Parameter]
+    public string Author { get; set; } = "Name Surname";
+
+    [Parameter]
+    public string ImageUrl { get; set; } = "";
+
+    private GoogleBookDto? _googleBook;
+    private bool _showGoogleDetails = false;
+    private async Task ShowDetails()
+    {
+        if (_googleBook == null)
+        {
+            var bookRequest = new GetGoogleBookRequest(GoogleId);
+            _googleBook = await Mediator.Send(bookRequest);
+        }
+        _showGoogleDetails = true;
+    }
+    private void HideDetails()
+    {
+        _showGoogleDetails = false;
+    }
+}
