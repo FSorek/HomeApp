@@ -22,6 +22,7 @@ public class GoogleBooksClient : IGoogleBooksClient
         {
             ApplicationName = "HomeApp",
             ApiKey = _apiKey,
+            GZipEnabled = false,
             Serializer = new NewtonsoftJsonSerializer(new JsonSerializerSettings(){ }),
         });
         var book = await service.Volumes.Get(id).ExecuteAsync();

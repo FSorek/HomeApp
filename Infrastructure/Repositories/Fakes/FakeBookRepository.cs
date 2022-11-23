@@ -12,12 +12,11 @@ public class FakeBookRepository : IBookRepository
     {
         _bookFaker = new Faker<Book>().CustomInstantiator(f => new Book()
         {
-            Title = f.Commerce.ProductName(),
             MyOpinion = f.Lorem.Paragraph(8),
-            ImageUrl = f.Image.PicsumUrl(340,440),
-            Author = f.Name.FullName()
+            MyRating = f.Random.Double(1d, 5d)
         });
     }
+
     public Task<IEnumerable<Book>> GetAllAsync()
     {
         IEnumerable<Book> books = _bookFaker.Generate(10);

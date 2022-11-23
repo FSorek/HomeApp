@@ -2,8 +2,7 @@
 
 public class Book
 {
-    public string ImageUrl { get; set; }
-    public string Title { get; set; }
+    public string GoogleBookId { get; set; }
     public string MyOpinion { get; set; }
-    public string Author { get; set; }
+    public double MyRating { get; set; }
 }
