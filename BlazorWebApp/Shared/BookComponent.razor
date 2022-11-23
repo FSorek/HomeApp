@@ -1,22 +1,24 @@
-﻿@using global::Books.Entities
-@using Application.DTOs.External
+﻿@using Application.DTOs.External
 @using Application.Requests
 @using MediatR
 @inject IMediator Mediator;
 <div class="book-layout">
-    <div class="book-title">
-        @Title
-    </div>
     @if (_showGoogleDetails)
     {
+        <div class="book-title">
+            @_googleBook!.Title
+        </div>
         <div class="book-image">
             <img src="@_googleBook!.ThumbnailUrl" alt="pic"/>
         </div>
         <div class="book-description">
-            @_googleBook!.Description;
+            @((MarkupString)_googleBook!.Description)
         </div>
         <div class="book-author">
-            ~@string.Join(", ", _googleBook.Authors);
+            @if (_googleBook.Authors.Any())
+            {
+                <p>~@string.Join(", ", _googleBook.Authors)</p>
+            }
         </div>
         <div class="book-actions">
             <button @onclick="HideDetails">Show default information</button>
@@ -24,6 +26,9 @@
     }
     else
     {
+        <div class="book-title">
+            @Title
+        </div>
         <div class="book-image">
             <img src="@ImageUrl" alt="pic"/>
         </div>

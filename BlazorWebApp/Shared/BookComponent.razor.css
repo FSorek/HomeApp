@@ -1,7 +1,7 @@
 ﻿.book-layout {
     display: grid;
-    grid-template-columns: 240px 600px 1fr;
     grid-template-rows: 340px 20px;
+    grid-template-columns: min-content minmax(auto, 800px);
     grid-row-gap: 5px;
     grid-column-gap: 3px;
     justify-self: stretch;
@@ -43,10 +43,11 @@
 .book-description {
     grid-row: 1;
     grid-column: 2;
+    overflow-y: auto;
     font-family: "Times New Roman", sans-serif;
     font-size: 18px;
     text-align: left;
-    overflow-wrap: normal;
+    overflow-wrap: break-word;
     text-justify: distribute;
     margin-top: 40px;
     margin-left: 15px;
