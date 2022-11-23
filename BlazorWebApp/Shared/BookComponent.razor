@@ -9,20 +9,26 @@
     }
     else
     {
-        <div class="book-title">
-            @_googleBook!.Title
-        </div>
         <div class="book-image">
             <img src="@_googleBook!.ThumbnailUrl" alt="pic"/>
         </div>
-        <div class="book-description">
-            @((MarkupString) _googleBook!.Description)
-        </div>
-        <div class="book-author">
-            @if (_googleBook.Authors.Any())
-            {
-                <p>~@string.Join(", ", _googleBook.Authors)</p>
-            }
+        <div class="book-info-layout">
+            <div class="book-title">
+                        @_googleBook!.Title<br/>
+                    </div>
+                    <div class="book-subtitle">
+                        @_googleBook!.Subtitle
+                    </div>
+                    
+                    <div class="book-description">
+                        @((MarkupString) _googleBook!.Description)
+                    </div>
+                    <div class="book-author">
+                        @if (_googleBook.Authors.Any())
+                        {
+                            <p>~@string.Join(", ", _googleBook.Authors)</p>
+                        }
+                    </div>
         </div>
     }
 </div>

@@ -30,6 +30,7 @@ public class GoogleBooksClient : IGoogleBooksClient
         {
             Id = id,
             Title = book.VolumeInfo.Title,
+            Subtitle = book.VolumeInfo.Subtitle,
             Description = book.VolumeInfo.Description,
             Authors = book.VolumeInfo.Authors.ToArray(),
             Publisher = book.VolumeInfo.Publisher,

@@ -14,7 +14,8 @@ public class FakeGoogleBooksClient : IGoogleBooksClient
         {
             Id = f.Database.Random.Hash(length: 10),
             Title = f.Commerce.ProductName(),
-            Description = f.Commerce.ProductDescription(),
+            Subtitle = f.Commerce.ProductAdjective(),
+            Description = f.Lorem.Paragraphs(5, 20),
             Publisher = f.Company.CompanyName(),
             Authors = f.Make(f.Random.Int(1,3), () => f.Name.FullName()).ToArray(),
             AverageRating = f.Random.Double(1d, 5d),

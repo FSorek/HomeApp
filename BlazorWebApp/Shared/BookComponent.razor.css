@@ -1,10 +1,14 @@
 ﻿.book-layout {
     display: grid;
-    grid-template-rows: 340px 20px;
+    grid-template-rows: auto;
     grid-template-columns: min-content minmax(auto, 800px);
     grid-row-gap: 5px;
     grid-column-gap: 3px;
     justify-self: stretch;
+}
+.book-info-layout {
+    display: grid;
+    grid-template-rows: auto auto fit-content(500px) auto auto;
 }
 .book-order {
     width: 40px;
@@ -29,20 +33,24 @@
 }
 .book-image > img {
     width: 240px;
-    height: 340px;
+    height: 300px;
 }
 .book-title {
     grid-row: 1;
-    grid-column: 2;
     font-size: 32px;
     font-family: "Arial Black", cursive;
     font-weight: bold;
-    line-height: 40px;
+    text-align: left;
+}
+.book-subtitle {
+    grid-row: 2;
+    font-size: 24px;
+    font-family: "Arial Black", cursive;
+    font-weight: bold;
     text-align: left;
 }
 .book-description {
-    grid-row: 1;
-    grid-column: 2;
+    grid-row: 3;
     overflow-y: auto;
     font-family: "Times New Roman", sans-serif;
     font-size: 18px;
@@ -53,8 +61,7 @@
     margin-left: 15px;
 }
 .book-author {
-    grid-row: 2;
-    grid-column: 2;
+    grid-row: 4;
     font-family: "Times New Roman", cursive;
     line-height: 20px;
     font-size: 14px;
