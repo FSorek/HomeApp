@@ -10,19 +10,18 @@ namespace Infrastructure.Services;
 
 public class GoogleBooksClient : IGoogleBooksClient
 {
-    private readonly IConfiguration _configuration;
+    private readonly string _apiKey;
 
     public GoogleBooksClient(IConfiguration configuration)
     {
-        _configuration = configuration;
+        _apiKey = configuration["Google:BooksApiKey"];
     }
     public async Task<GoogleBookDto> GetBook(string id)
     {
-        string apiKey = _configuration["Google:BooksApiKey"];
         var service = new BooksService(new BaseClientService.Initializer()
         {
             ApplicationName = "HomeApp",
-            ApiKey = apiKey,
+            ApiKey = _apiKey,
             Serializer = new NewtonsoftJsonSerializer(new JsonSerializerSettings(){ }),
         });
         var book = await service.Volumes.Get(id).ExecuteAsync();
