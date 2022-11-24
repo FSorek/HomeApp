@@ -2,36 +2,30 @@
 @using Application.Requests
 @using MediatR
 @inject IMediator Mediator;
-<div class="book-layout">
-    @if (_googleBook == null)
-    {
-        <div>Loading..</div>
-    }
-    else
-    {
-        <div class="book-image">
-            <img src="@_googleBook!.ThumbnailUrl" alt="pic"/>
-        </div>
+
+@if (_googleBook == null)
+{
+    <div>Loading..</div>
+}
+else
+{
+    <div class="book-layout">
+        <img src="@_googleBook!.ThumbnailUrl" alt="pic"/>
         <div class="book-info-layout">
             <div class="book-title">
-                        @_googleBook!.Title<br/>
-                    </div>
-                    <div class="book-subtitle">
-                        @_googleBook!.Subtitle
-                    </div>
-                    
-                    <div class="book-description">
-                        @((MarkupString) _googleBook!.Description)
-                    </div>
-                    <div class="book-author">
-                        @if (_googleBook.Authors.Any())
-                        {
-                            <p>~@string.Join(", ", _googleBook.Authors)</p>
-                        }
-                    </div>
+                @_googleBook!.Title<div class="book-author">, by @string.Join(", ", _googleBook.Authors)</div>
+            </div>
+            <div class="book-subtitle">
+                @_googleBook!.Subtitle
+                <div class="book-publisher">@_googleBook!.Publisher</div>
+                <div class="book-avgRating">Google Books Rating: @_googleBook!.AverageRating / 5</div>
+            </div>
+            <div class="book-description">
+                @((MarkupString) _googleBook!.Description)
+            </div>
         </div>
-    }
-</div>
+    </div>
+}
 @code {
 
     [Parameter]

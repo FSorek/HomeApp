@@ -1,39 +1,18 @@
 ﻿.book-layout {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: min-content minmax(auto, 800px);
+    grid-template-columns: min-content fit-content(1200px);
     grid-row-gap: 5px;
     grid-column-gap: 3px;
     justify-self: stretch;
 }
+.book-layout > img {
+    width: 320px;
+    height: 480px;
+}
 .book-info-layout {
     display: grid;
-    grid-template-rows: auto auto fit-content(500px) auto auto;
-}
-.book-order {
-    width: 40px;
-    height: 40px;
-    grid-row: 1;
-    grid-column: 1;
-    border-radius: 50%;
-    line-height: 28px;
-    text-align: center;
-    align-self: stretch;
-    justify-self: stretch;
-    font-size: 24px;
-    font-weight: bolder;
-    font-family: "Arial Black", sans-serif;
-    color: black;
-    background: goldenrod;
-    border: 6px solid darkgoldenrod;
-}
-.book-image {
-    grid-row: 1;
-    grid-column: 1;
-}
-.book-image > img {
-    width: 240px;
-    height: 300px;
+    grid-template-rows: auto auto auto auto fit-content(500px) auto;
 }
 .book-title {
     grid-row: 1;
@@ -41,34 +20,41 @@
     font-family: "Arial Black", cursive;
     font-weight: bold;
     text-align: left;
+    margin-left: 5px;
 }
 .book-subtitle {
     grid-row: 2;
+    margin-left: 5px;
     font-size: 24px;
     font-family: "Arial Black", cursive;
     font-weight: bold;
     text-align: left;
 }
+.book-publisher {
+    font-size: 18px;
+    text-align: left;
+    font-weight: normal;
+    font-family: "Times New Roman", sans-serif;
+}
+.book-avgRating {
+    text-align: left;
+    font-size: 14px;
+    font-weight: lighter;
+    font-family: "Times New Roman", sans-serif;
+}
 .book-description {
-    grid-row: 3;
+    grid-row: 5;
     overflow-y: auto;
     font-family: "Times New Roman", sans-serif;
     font-size: 18px;
     text-align: left;
     overflow-wrap: break-word;
     text-justify: distribute;
-    margin-top: 40px;
     margin-left: 15px;
+    margin-top: 5px;
 }
 .book-author {
-    grid-row: 4;
-    font-family: "Times New Roman", cursive;
-    line-height: 20px;
-    font-size: 14px;
-    text-align: end;
-}
-.book-actions {
-    grid-row: 2;
-    grid-column: 1;
-    font-size: 12px;
+    display: inline;
+    font-family: "Arial Black", cursive;
+    font-size: 18px;
 }

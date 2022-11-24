@@ -13,7 +13,12 @@
     {
         var book = _books[i];
         <tr>
-            <td><BookComponent GoogleId="@book.GoogleBookId" MyOpinion="@book.MyOpinion" /></td>
+            <td>
+                <div class="books-layout">
+                    <div class="books-order">@(i+1)</div>
+                    <BookComponent GoogleId="@book.GoogleBookId" MyOpinion="@book.MyOpinion"/>
+                </div>
+            </td>
         </tr>
     }
     </tbody>

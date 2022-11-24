@@ -1,0 +1,22 @@
+﻿.books-order {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    line-height: 45px;
+    text-align: center;
+    align-self: stretch;
+    justify-self: stretch;
+    font-size: 32px;
+    font-weight: bolder;
+    font-family: "Arial Black", sans-serif;
+    color: black;
+    background: goldenrod;
+    border: 6px solid darkgoldenrod;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.books-layout {
+    position: relative;
+}
