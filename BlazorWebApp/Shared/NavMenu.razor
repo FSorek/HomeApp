@@ -1,4 +1,7 @@
 ﻿<MudNavMenu>
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Filled.Home">Home</MudNavLink>
-    <MudNavLink Href="/books" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.MenuBook">Books</MudNavLink>
+    <MudNavGroup Title="Books" Expanded="true">
+        <MudNavLink Href="/books" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.MenuBook">My Recommendations</MudNavLink>
+        <MudNavLink Href="/books/recommend" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Comment">Recommend a book!</MudNavLink>
+    </MudNavGroup>
 </MudNavMenu>

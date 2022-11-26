@@ -17,9 +17,9 @@ builder.Services.AddScoped(sp => new HttpClient {BaseAddress = new Uri(builder.H
 builder.Services.AddMediatR(typeof(GetAllBooksRequest));
 builder.Services.AddMediatR(typeof(GetBookDetailsRequest));
 builder.Services.AddMudServices();
-#if DEBUG
+#if !DEBUG
 builder.Services.AddScoped<IBookRepository, FakeBookRepository>();
-builder.Services.AddScoped<IGoogleBooksClient, FakeGoogleBooksClient>();
+builder.Services.AddScoped<IGoogleBooksClient, GoogleBooksClient>();
 #else
 builder.Services.AddScoped<IGoogleBooksClient, GoogleBooksClient>();
 builder.Services.AddScoped<IBookRepository, MyBookRepository>();

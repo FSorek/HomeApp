@@ -1,0 +1,45 @@
+﻿@page "/books/recommend"
+@using BookRecommendations.ValueObjects
+@using Application.DTOs.External
+@using Application.Requests
+@using MediatR
+@inject IMediator Mediator;
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudPaper Elevation="3" Class="pa-10 ma-2">
+        <MudAutocomplete DebounceInterval="1000" MinCharacters="4" T="GoogleBookDto" Placeholder="Type min. 3 letters to search.." Label="Books" @bind-Value="_selectedBook" ToStringFunc="@(e => $"{e?.Title}")" SearchFuncWithCancel="@SearchBook" Variant="Variant.Outlined" ShowProgressIndicator="true">
+            <ProgressIndicatorTemplate>
+                <MudProgressLinear Size="Size.Small" Indeterminate="true"/>
+            </ProgressIndicatorTemplate>
+            <ItemTemplate Context="book">
+                <MudText>@($"{book.Title}, by {string.Join(" ,", book.Authors)}")</MudText>
+            </ItemTemplate>
+        </MudAutocomplete>
+        @if (_selectedBook != null)
+        {
+            <MudDivider DividerType="DividerType.Inset" Class="mt-5"/>
+            <BookDetailsDisplay BookDetails="@(new BookDetails()
+                                             {
+                                                 Title = _selectedBook.Title,
+                                                 Subtitle = _selectedBook.Subtitle,
+                                                 Description = _selectedBook.Description,
+                                                 Publisher = _selectedBook.Publisher,
+                                                 Authors = _selectedBook.Authors,
+                                                 AverageRating = _selectedBook.AverageRating ?? 0,
+                                                 ThumbnailUrl = _selectedBook.ThumbnailUrl
+                                             })"/>
+            <MudDivider DividerType="DividerType.Inset"/>
+            <MudButton Class="pa-2 mt-5" Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Filled.Send">Send Recommendation</MudButton>
+        }
+    </MudPaper>
+</MudContainer>
+@code {
+    private GoogleBookDto? _selectedBook;
+    private async Task<IEnumerable<GoogleBookDto>> SearchBook(string value, CancellationToken token)
+    {
+        var searchBooksRequest = new GetBooksByNameRequest(){SearchInput = value};
+        var matchingBooks = await Mediator.Send(searchBooksRequest, token);
+        return matchingBooks;
+    }
+
+}

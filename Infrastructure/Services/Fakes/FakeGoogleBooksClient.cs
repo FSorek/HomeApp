@@ -28,4 +28,10 @@ public class FakeGoogleBooksClient : IGoogleBooksClient
         var fakeBook = _googleBookFaker.Generate();
         return Task.FromResult(fakeBook);
     }
+
+    public Task<IEnumerable<GoogleBookDto>> GetBooksByTitle(string inputTitle, CancellationToken token)
+    {
+        IEnumerable<GoogleBookDto> books = _googleBookFaker.Generate(10);
+        return Task.FromResult(books);
+    }
 }
