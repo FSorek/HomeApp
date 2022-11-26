@@ -19,7 +19,7 @@ builder.Services.AddMediatR(typeof(GetBookDetailsRequest));
 builder.Services.AddMudServices();
 #if !DEBUG
 builder.Services.AddScoped<IBookRepository, FakeBookRepository>();
-builder.Services.AddScoped<IGoogleBooksClient, GoogleBooksClient>();
+builder.Services.AddScoped<IGoogleBooksClient, FakeGoogleBooksClient>();
 #else
 builder.Services.AddScoped<IGoogleBooksClient, GoogleBooksClient>();
 builder.Services.AddScoped<IBookRepository, MyBookRepository>();
