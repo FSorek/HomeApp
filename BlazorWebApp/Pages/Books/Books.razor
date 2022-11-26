@@ -4,27 +4,15 @@
 @using BookRecommendations.Entities
 @inject IMediator Mediator;
 
-<PageTitle>Book Recommendations</PageTitle>
 <MudContainer Fixed="true">
-    <h1>Check out those books!</h1>
-        <table>
-            <tbody>
-            @for(int i = 0; i < _bookEntries.Length; i++)
-            {
-                var bookEntry = _bookEntries[i];
-                <tr>
-                    <td>
-                        <div class="books-layout">
-                            <div class="book-layout">
-                                <BookEntryDisplay BookEntry="bookEntry"/>  
-                            </div>
-                        </div>
-                        <MudDivider DividerType="DividerType.Inset"/>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
+    <MudStack>
+        <MudText Typo="Typo.h2">Check out those books!</MudText>
+        @foreach (var bookEntry in _bookEntries)
+        {
+            <BookEntryDisplay BookEntry="bookEntry"/>
+            <MudDivider Class="mb-3" DividerType="DividerType.Inset"/>
+        }
+    </MudStack>
 </MudContainer>
 @code {
     private BookEntry[] _bookEntries = Array.Empty<BookEntry>();

@@ -1,6 +1,6 @@
 ﻿@using BookRecommendations.ValueObjects
 <div class="book-layout">
-    <img src="@BookDetails.ThumbnailUrl" alt="pic"/>
+    <MudImage Src="@BookDetails.ThumbnailUrl" Width="320" Height="480"/>
     <div class="book-info">
         <div class="book-title">
             @BookDetails.Title<div class="book-author">, by @string.Join(", ", BookDetails.Authors)</div>
