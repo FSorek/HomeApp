@@ -1,35 +1,46 @@
 ﻿@page "/books"
 @using MediatR
 @using Application.Requests
-@using global::Books.Entities
+@using BookRecommendations.Entities
 @inject IMediator Mediator;
-<PageTitle>Books</PageTitle>
 
-<h1>My favourite bookssss</h1>
-<p>Here is a list of my favourite books!</p>
-<table class="table">
-    <tbody>
-    @for(int i = 0; i < _books.Length; i++)
-    {
-        var book = _books[i];
-        <tr>
-            <td>
-                <div class="books-layout">
-                    <div class="books-order">@(i+1)</div>
-                    <BookComponent GoogleId="@book.GoogleBookId" MyOpinion="@book.MyOpinion"/>
-                </div>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
-
+<PageTitle>Book Recommendations</PageTitle>
+<div class="books-page-layout">
+    <h1>Check out those books!</h1>
+    <table>
+        <tbody>
+        @for(int i = 0; i < _bookEntries.Length; i++)
+        {
+            var bookEntry = _bookEntries[i];
+            <tr>
+                <td>
+                    <div class="books-layout">
+                        <div class="books-order">@(i+1)</div>
+                        <div class="book-layout">
+                            <BookEntryDisplay BookEntry="bookEntry"/>  
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 @code {
-    private Book[] _books = Array.Empty<Book>();
+    private BookEntry[] _bookEntries = Array.Empty<BookEntry>();
     protected override async Task OnInitializedAsync()
     {
         var booksRequest = new GetAllBooksRequest();
         var currentBooks = await Mediator.Send(booksRequest);
-        _books = currentBooks.ToArray();
+        _bookEntries = currentBooks.ToArray();
+        var bookDetailsTasks = _bookEntries.Select(b =>
+        {
+            var request = new GetBookDetailsRequest(b.GoogleBookId);
+            return Mediator.Send(request).ContinueWith(task =>
+            {
+                b.BookDetails = task.Result;
+            });
+        });
+        await Task.WhenAll(bookDetailsTasks);
     }
 }

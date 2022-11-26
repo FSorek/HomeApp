@@ -1,44 +1,44 @@
-﻿using Books.Entities;
-using Books.Repositories;
+﻿using BookRecommendations.Entities;
+using BookRecommendations.Repositories;
 
 namespace Infrastructure.Repositories;
 
 public class MyBookRepository : IBookRepository
 {
-    private IEnumerable<Book> _myBooks = new[]
+    private IEnumerable<BookEntry> _myBooks = new[]
     {
-        new Book()
+        new BookEntry()
         {
             GoogleBookId = "OHclhBVv-X4C",
             MyOpinion = "Amazing!!",
             MyRating = 5d
         },
-        new Book()
+        new BookEntry()
         {
             GoogleBookId = "kYjqAQAAQBAJ",
             MyOpinion = "I love it!!!",
             MyRating = 5d
         },
-        new Book()
+        new BookEntry()
         {
             GoogleBookId = "VsT3DQAAQBAJ",
             MyOpinion = "Must read!",
             MyRating = 5d
         },
-        new Book()
+        new BookEntry()
         {
             GoogleBookId = "jZAUqunfcZkC",
             MyOpinion = "WOW!",
             MyRating = 4.9d
         },
-        new Book()
+        new BookEntry()
         {
             GoogleBookId = "ABD0xgEACAAJ",
             MyOpinion = "Fantastic!!!",
             MyRating = 4.8d
         },
     };
-    public Task<IEnumerable<Book>> GetAllAsync()
+    public Task<IEnumerable<BookEntry>> GetAllAsync()
     {
         return Task.FromResult(_myBooks);
     }

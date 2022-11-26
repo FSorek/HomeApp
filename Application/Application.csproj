@@ -11,7 +11,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Books\Books.csproj" />
+      <ProjectReference Include="..\MyBookshelf\MyBookshelf.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Commands" />
     </ItemGroup>
 
 </Project>

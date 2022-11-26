@@ -1,25 +1,25 @@
 ﻿using Bogus;
-using Books.Entities;
-using Books.Repositories;
+using BookRecommendations.Entities;
+using BookRecommendations.Repositories;
 
 namespace Infrastructure.Repositories;
 
 public class FakeBookRepository : IBookRepository
 {
-    private Faker<Book> _bookFaker;
+    private Faker<BookEntry> _bookFaker;
 
     public FakeBookRepository()
     {
-        _bookFaker = new Faker<Book>().CustomInstantiator(f => new Book()
+        _bookFaker = new Faker<BookEntry>().CustomInstantiator(f => new BookEntry()
         {
             MyOpinion = f.Lorem.Paragraph(8),
             MyRating = f.Random.Double(1d, 5d)
         });
     }
 
-    public Task<IEnumerable<Book>> GetAllAsync()
+    public Task<IEnumerable<BookEntry>> GetAllAsync()
     {
-        IEnumerable<Book> books = _bookFaker.Generate(10);
+        IEnumerable<BookEntry> books = _bookFaker.Generate(10);
         return Task.FromResult(books);
     }
 }

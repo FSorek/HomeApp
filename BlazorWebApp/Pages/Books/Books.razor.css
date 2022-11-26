@@ -20,3 +20,13 @@
 .books-layout {
     position: relative;
 }
+.books-page-layout {
+    display: grid;
+    grid-template-columns: auto fit-content(20%);
+}
+.books-page-layout > table {
+    grid-column: 1;
+}
+.books-page-layout > aside {
+    grid-column: 2;
+}

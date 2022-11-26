@@ -3,7 +3,7 @@ using Application.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using BlazorWebApp;
-using Books.Repositories;
+using BookRecommendations.Repositories;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using MediatR;
@@ -14,7 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient {BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)});
 builder.Services.AddMediatR(typeof(GetAllBooksRequest));
-builder.Services.AddMediatR(typeof(GetGoogleBookRequest));
+builder.Services.AddMediatR(typeof(GetBookDetailsRequest));
 
 #if DEBUG
 builder.Services.AddScoped<IBookRepository, FakeBookRepository>();

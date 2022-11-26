@@ -1,0 +1,25 @@
+﻿@using Application.DTOs.External
+@using Application.Requests
+@using MediatR
+@using BookRecommendations.Entities
+@using BookRecommendations.ValueObjects
+@inject IMediator Mediator;
+
+@if (BookEntry.BookDetails == null)
+{
+    <div>Loading..</div>
+}
+else
+{
+    <div class="entry-layout">
+        <BookDetailsDisplay BookDetails="BookEntry.BookDetails"/>
+        <aside class="entry-opinions">
+            <p>@BookEntry.MyOpinion</p>
+            <p>A solid @BookEntry.MyRating out of 5!</p>
+        </aside>
+    </div>
+}
+@code {
+    [Parameter]
+    public BookEntry BookEntry { get; set; } = new BookEntry();
+}

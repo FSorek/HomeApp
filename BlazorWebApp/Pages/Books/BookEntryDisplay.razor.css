@@ -1,0 +1,7 @@
+﻿.entry-layout {
+    display: grid;
+    grid-template-columns: auto fit-content(20%);
+}
+.entry-opinions {
+    grid-column: 1;
+}

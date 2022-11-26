@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebApp", "BlazorWebApp\BlazorWebApp.csproj", "{A892E63D-6EFD-4B41-BF68-AA4ADE384913}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books", "Books\Books.csproj", "{AF66575B-7872-4D55-A27A-8E74B94CBF7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookshelf", "MyBookshelf\MyBookshelf.csproj", "{AF66575B-7872-4D55-A27A-8E74B94CBF7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{562EFFC3-5ADD-4FBA-96B5-310420F2B616}"
 EndProject
