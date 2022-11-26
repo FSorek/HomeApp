@@ -12,7 +12,7 @@ public class FakeBookRepository : IBookRepository
     {
         _bookFaker = new Faker<BookEntry>().CustomInstantiator(f => new BookEntry()
         {
-            MyOpinion = f.Lorem.Paragraph(8),
+            MyOpinion = f.Lorem.Sentences(f.Random.Int(1,3)),
             MyRating = f.Random.Double(1d, 5d)
         });
     }

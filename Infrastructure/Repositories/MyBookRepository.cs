@@ -17,25 +17,25 @@ public class MyBookRepository : IBookRepository
         {
             GoogleBookId = "kYjqAQAAQBAJ",
             MyOpinion = "I love it!!!",
-            MyRating = 5d
+            MyRating = 4.9d
         },
         new BookEntry()
         {
             GoogleBookId = "VsT3DQAAQBAJ",
             MyOpinion = "Must read!",
-            MyRating = 5d
+            MyRating = 4.1d
         },
         new BookEntry()
         {
             GoogleBookId = "jZAUqunfcZkC",
             MyOpinion = "WOW!",
-            MyRating = 4.9d
+            MyRating = 4d
         },
         new BookEntry()
         {
             GoogleBookId = "ABD0xgEACAAJ",
             MyOpinion = "Fantastic!!!",
-            MyRating = 4.8d
+            MyRating = 3.5d
         },
     };
     public Task<IEnumerable<BookEntry>> GetAllAsync()

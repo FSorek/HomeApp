@@ -7,17 +7,24 @@
 
 @if (BookEntry.BookDetails == null)
 {
-    <div>Loading..</div>
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" Style="height:70px;width:70px;margin-left:50px;margin-top:50px"/>
 }
 else
 {
-    <div class="entry-layout">
-        <BookDetailsDisplay BookDetails="BookEntry.BookDetails"/>
-        <aside class="entry-opinions">
-            <p>@BookEntry.MyOpinion</p>
-            <p>A solid @BookEntry.MyRating out of 5!</p>
-        </aside>
-    </div>
+    <MudGrid>
+        <MudItem xs="10">
+            <BookDetailsDisplay BookDetails="BookEntry.BookDetails"/>
+        </MudItem>
+        <MudItem xs="2">
+            <MudPaper Elevation="3" Class="d-flex flex-column align-center justify-center">
+                <MudText Typo="Typo.h4" Align="Align.Center" Class="object-fill">@BookEntry.MyOpinion</MudText>
+                <MudDivider DividerType="DividerType.FullWidth"/>
+                <MudTooltip Text="@($"{BookEntry.MyRating:F1}/5 (Personal score)")">
+                    <MudRating SelectedValue="@((int)Math.Floor(BookEntry.MyRating))" ReadOnly="true" Class="object-center"/>
+                </MudTooltip>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
 }
 @code {
     [Parameter]

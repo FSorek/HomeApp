@@ -12,7 +12,8 @@
 }
 .book-info {
     grid-column: 2;
-    display: grid;
+    display: flex;
+    flex-direction: column;
 }
 .book-title {
     font-size: 32px;

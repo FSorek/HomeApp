@@ -5,27 +5,28 @@
 @inject IMediator Mediator;
 
 <PageTitle>Book Recommendations</PageTitle>
-<div class="books-page-layout">
+<MudContainer Fixed="true">
     <h1>Check out those books!</h1>
-    <table>
-        <tbody>
-        @for(int i = 0; i < _bookEntries.Length; i++)
-        {
-            var bookEntry = _bookEntries[i];
-            <tr>
-                <td>
-                    <div class="books-layout">
-                        <div class="books-order">@(i+1)</div>
-                        <div class="book-layout">
-                            <BookEntryDisplay BookEntry="bookEntry"/>  
+        <table>
+            <tbody>
+            @for(int i = 0; i < _bookEntries.Length; i++)
+            {
+                var bookEntry = _bookEntries[i];
+                <tr>
+                    <td>
+                        <div class="books-layout">
+                            <div class="books-order">@(i+1)</div>
+                            <div class="book-layout">
+                                <BookEntryDisplay BookEntry="bookEntry"/>  
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
+                        <MudDivider DividerType="DividerType.Inset"/>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+</MudContainer>
 @code {
     private BookEntry[] _bookEntries = Array.Empty<BookEntry>();
     protected override async Task OnInitializedAsync()

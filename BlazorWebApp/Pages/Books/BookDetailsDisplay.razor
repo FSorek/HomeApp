@@ -1,20 +1,22 @@
 ﻿@using BookRecommendations.ValueObjects
 <div class="book-layout">
-        <img src="@BookDetails.ThumbnailUrl" alt="pic"/>
-        <div class="book-info">
-            <div class="book-title">
-                @BookDetails.Title<div class="book-author">, by @string.Join(", ", BookDetails.Authors)</div>
-            </div>
-            <div class="book-subtitle">
-                @BookDetails.Subtitle
-                <div class="book-publisher">@BookDetails.Publisher</div>
-                <div class="book-avgRating">Google Books Rating: @BookDetails.AverageRating / 5</div>
-            </div>
-            <div class="book-description">
-                @((MarkupString) BookDetails.Description)
-            </div>
+    <img src="@BookDetails.ThumbnailUrl" alt="pic"/>
+    <div class="book-info">
+        <div class="book-title">
+            @BookDetails.Title<div class="book-author">, by @string.Join(", ", BookDetails.Authors)</div>
+        </div>
+        <div class="book-subtitle">
+            @BookDetails.Subtitle
+            <div class="book-publisher">@BookDetails.Publisher</div>
+            <MudTooltip Text="@($"{BookDetails.AverageRating:F1}/5 (Google Books API)")"> 
+                <MudRating SelectedValue="@((int)Math.Floor(BookDetails.AverageRating))" ReadOnly="true" Size="Size.Small"/>
+            </MudTooltip>
+        </div>
+        <div class="book-description">
+            @((MarkupString) BookDetails.Description)
         </div>
     </div>
+</div>
 @code {
     [Parameter]
     public BookDetails BookDetails { get; set; } = new BookDetails();
