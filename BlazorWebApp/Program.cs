@@ -16,8 +16,13 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient {BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)});
 builder.Services.AddMediatR(typeof(GetAllBooksRequest));
 builder.Services.AddMediatR(typeof(GetBookDetailsRequest));
+builder.Services.AddOidcAuthentication(options =>
+{
+    builder.Configuration.Bind("Auth0", options.ProviderOptions);
+    options.ProviderOptions.ResponseType = "code";
+});
 builder.Services.AddMudServices();
-#if !DEBUG
+#if DEBUG
 builder.Services.AddScoped<IBookRepository, FakeBookRepository>();
 builder.Services.AddScoped<IGoogleBooksClient, FakeGoogleBooksClient>();
 #else
